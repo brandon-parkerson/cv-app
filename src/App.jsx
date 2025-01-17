@@ -1,12 +1,14 @@
 import { useState } from 'react'
 
 import './App.css'
+import { use } from 'react';
 
 function App() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const FullName = name;
-  const Email = email;
+  const [phone, setPhone] = useState('');
+
+ 
  
   function handleName(e) {
     setName(e.target.value);
@@ -14,6 +16,10 @@ function App() {
 
   function handleEmail(e) {
     setEmail(e.target.value);
+  }
+
+  function handlePhone(e) {
+    setPhone(e.target.value)
   }
 
   return (
@@ -38,7 +44,7 @@ function App() {
                 <div className="phone-container">
                   <label htmlFor="phone">
                     Phone:{' '}
-                    <input type="tel" />
+                    <input type="tel" id='phone' value={phone} onChange={handlePhone} />
                   </label>
                 </div>
               </form>
@@ -47,8 +53,9 @@ function App() {
           
         <div className='resume'>
           <h1>Resume</h1>
-          <h2>{FullName}</h2>
-
+          <h2>{name}</h2>
+          <p>{email}</p>
+          <p>Phone: {phone}</p>
         </div>
       </body>
     </>
