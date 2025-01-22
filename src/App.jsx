@@ -2,15 +2,15 @@ import { useState } from 'react'
 
 import './App.css'
 import  EducationForm  from './Edu';
-
+import ExpForm from './Exp';
 
 
 function App() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [education, setEducation] = useState('');
- 
+  const [education, setEducation] = useState([]);
+  const [experience, setExperience] = useState([]);
  
   function handleName(e) {
     setName(e.target.value);
@@ -28,6 +28,9 @@ function App() {
     setEducation((prevEducation) => [...prevEducation, newEducation]);
   }
   
+  function addExp(newExperience) {
+    setExperience((prevExperience) => [...prevExperience, newExperience]);
+  }
 
   return (
     <>
@@ -57,6 +60,8 @@ function App() {
               </form>
               <h2>Education</h2>
               <EducationForm onAddEducation={addEducation}/>
+              <h2>Experience</h2>
+              <ExpForm onAddExp={addExp} />
             </div>
         </div>
           
@@ -71,6 +76,16 @@ function App() {
                 <p>School: {edu.school}</p>
                 <p>Degree: {edu.degree}</p>
                 <p>Date: {edu.date}</p>
+              </li>
+            ))}
+          </ul>
+          <h2>Experience</h2>
+          <ul>
+            {experience.map((exp, index) => (
+              <li key={index}>
+                <p>Company: {exp.company}</p>
+                <p>Position: {exp.position}</p>
+                <p>{exp.from} - {exp.to}</p>
               </li>
             ))}
           </ul>
