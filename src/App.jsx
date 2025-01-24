@@ -1,15 +1,24 @@
 import { useState } from 'react'
 
 import './App.css'
-import  EducationForm  from './Edu';
+
 import ExpForm from './Exp';
 
+let nextId = 0;
 
 function App() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [education, setEducation] = useState([]);
+  const [school, setSchool] = useState('');
+  const [degree, setDegree] = useState('');
+  const [date, setDate] = useState('');
+  const [education, setEducation] = useState([{
+    id: nextId,
+    school: school,
+    degree: degree,
+    date: date
+  }]);
   const [experience, setExperience] = useState([]);
  
   function handleName(e) {
@@ -24,13 +33,13 @@ function App() {
     setPhone(e.target.value)
   }
 
-  function addEducation(newEducation) {
-    setEducation((prevEducation) => [...prevEducation, newEducation]);
-  }
+  
   
   function addExp(newExperience) {
     setExperience((prevExperience) => [...prevExperience, newExperience]);
   }
+
+  
 
   return (
     <>
@@ -59,7 +68,18 @@ function App() {
                 </div>
               </form>
               <h2>Education</h2>
-              <EducationForm onAddEducation={addEducation}/>
+              <form action="">
+                <label htmlFor="school">School: 
+                <input type="text" id='school' value={school} onChange={e => setSchool(e.target.value)}/>
+                </label>
+                <label htmlFor="degree">
+                  <input type="text" id='degree' value={education.degree} onChange={e => setDegree(e.target.value)}/>
+                </label>
+                <label htmlFor="date">
+                  <input type="date" value={education.date} onChange={e => setDate(e.target.value)}/>
+                </label>
+                <button type='button' onClick={() => {setEducation([...education, {id: nextId++, school: school, degree: degree, date: date }])}}>Add</button>
+              </form>
               <h2>Experience</h2>
               <ExpForm onAddExp={addExp} />
             </div>
@@ -71,14 +91,11 @@ function App() {
           <p>Phone: {phone}</p>
           <h2>Education</h2>
           <ul>
-            {education.map((edu, index) => (
-              <li key={index}>
-                <p>School: {edu.school}</p>
-                <p>Degree: {edu.degree}</p>
-                <p>Date: {edu.date}</p>
-              </li>
+            {education.map(edu => (
+              <li key={edu.id}>{edu.school}{' '}<i>{edu.degree}</i>{' '}{edu.date}</li>
             ))}
           </ul>
+          <p></p>
           <h2>Experience</h2>
           <ul>
             {experience.map((exp, index) => (
