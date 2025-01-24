@@ -6,6 +6,7 @@ import ExpForm from './Exp';
 
 let nextId = 0;
 
+
 function App() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -13,11 +14,13 @@ function App() {
   const [school, setSchool] = useState('');
   const [degree, setDegree] = useState('');
   const [date, setDate] = useState('');
+  
   const [education, setEducation] = useState([{
-    id: nextId,
-    school: school,
-    degree: degree,
-    date: date
+
+    id: nextId++,
+    school: 'Harvard',
+    degree: 'Masters Computer Science',
+    date: '2024-05-05'
   }]);
   const [experience, setExperience] = useState([]);
  
@@ -92,7 +95,9 @@ function App() {
           <h2>Education</h2>
           <ul>
             {education.map(edu => (
-              <li key={edu.id}>{edu.school}{' '}<i>{edu.degree}</i>{' '}{edu.date}</li>
+              <li key={edu.id}>{edu.school}{' '}<i>{edu.degree}</i>{' '}{edu.date} <button onClick={() => {
+                setEducation(education.filter(a => a.id !== edu.id))
+              }}>Delete</button></li>
             ))}
           </ul>
           <p></p>
