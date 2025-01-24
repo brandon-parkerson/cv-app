@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import './App.css'
 
-import ExpForm from './Exp';
+
 
 let nextId = 0;
 
@@ -14,6 +14,10 @@ function App() {
   const [school, setSchool] = useState('');
   const [degree, setDegree] = useState('');
   const [date, setDate] = useState('');
+  const [position, setPosition] = useState('');
+  const [company, setCompany] = useState('');
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('')
   
   const [education, setEducation] = useState([{
 
@@ -22,7 +26,13 @@ function App() {
     degree: 'Masters Computer Science',
     date: '2024-05-05'
   }]);
-  const [experience, setExperience] = useState([]);
+  const [experience, setExperience] = useState([{
+    id: nextId++, 
+    position: 'Full Stack Engineer',
+    company: 'Google',
+    fromDate: '1998-08-17',
+    toDate: '2016-05-05'
+  }]);
  
   function handleName(e) {
     setName(e.target.value);
@@ -38,9 +48,8 @@ function App() {
 
   
   
-  function addExp(newExperience) {
-    setExperience((prevExperience) => [...prevExperience, newExperience]);
-  }
+  
+ 
 
   
 
@@ -75,16 +84,30 @@ function App() {
                 <label htmlFor="school">School: 
                 <input type="text" id='school' value={school} onChange={e => setSchool(e.target.value)}/>
                 </label>
-                <label htmlFor="degree">
+                <label htmlFor="degree">Degree:
                   <input type="text" id='degree' value={education.degree} onChange={e => setDegree(e.target.value)}/>
                 </label>
-                <label htmlFor="date">
+                <label htmlFor="date">Date of Completion:
                   <input type="date" value={education.date} onChange={e => setDate(e.target.value)}/>
                 </label>
                 <button type='button' onClick={() => {setEducation([...education, {id: nextId++, school: school, degree: degree, date: date }])}}>Add</button>
               </form>
               <h2>Experience</h2>
-              <ExpForm onAddExp={addExp} />
+              <form action="">
+                <label htmlFor="position">Position:
+                  <input type="text" id="position" value={position} onChange={e => setPosition(e.target.value)}/>
+                </label>
+                <label htmlFor="company">Company: 
+                  <input type="text" id="company" value={company} onChange={e => setCompany(e.target.value)}/>
+                </label>
+                <label htmlFor="from">From:
+                  <input type="date" value={fromDate} onChange={e => setFromDate(e.target.value)} />
+                </label>
+                <label htmlFor="to">To: 
+                  <input type="date" id='to' value={toDate} onChange={e => setToDate(e.target.value)} />
+                </label>
+                <button type='button' onClick={() => {setExperience([...experience, {id: nextId++, position: position, company:company, fromDate: fromDate, toDate: toDate }])}}>Add</button>
+              </form>
             </div>
         </div>
           
@@ -103,12 +126,10 @@ function App() {
           <p></p>
           <h2>Experience</h2>
           <ul>
-            {experience.map((exp, index) => (
-              <li key={index}>
-                <p>Company: {exp.company}</p>
-                <p>Position: {exp.position}</p>
-                <p>{exp.from} - {exp.to}</p>
-              </li>
+            {experience.map(exp => (
+              <li key={exp.id}>{exp.position}{' '}<i>{exp.company}</i>{' '}{exp.fromDate}-{exp.toDate} <button onClick={() => {
+                setExperience(experience.filter(a => a.id !== exp.id))
+              }}>Delete</button></li>
             ))}
           </ul>
         </div>
