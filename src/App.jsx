@@ -53,11 +53,6 @@ function App() {
     
   }
 
-  
-
-  
-  
-
   return (
     <>
       <div className='app-container'>
@@ -122,8 +117,9 @@ function App() {
         <div className='resume'>
           <h2>{name}</h2>
           <p>{email}</p>
-          <p>Phone: {phone}</p>
+          <p>{phone}</p>
           <h2>Education</h2>
+          <hr></hr>
           <ul>
             {education.map(edu => (
               <li key={edu.id}>{edu.school}{' '}<i>{edu.degree}</i>{' '}{edu.date} <button onClick={() => {
@@ -139,6 +135,7 @@ function App() {
           </ul>
           <p></p>
           <h2>Experience</h2>
+          <hr />
           <ul>
             {experience.map(exp => (
               <li key={exp.id}>{exp.position}{' '}<i>{exp.company}</i>{' '}{exp.fromDate}-{exp.toDate} <button onClick={() => {
