@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import './App.css'
 
-//TODO: Reset inputs after form submit
+
 
 
 let nextId = 0;
@@ -52,7 +52,10 @@ function App() {
   }
   function experienceFormReset() {
     document.getElementById("ExperienceForm").reset();
+    
   }
+
+  
 
   
   
@@ -103,13 +106,13 @@ function App() {
                   <input type="text" id="position" value={experience.position} onChange={e => setPosition(e.target.value)}/>
                 </label>
                 <label htmlFor="company">Company: 
-                  <input type="text" id="company" value={experience.company} onChange={e => setCompany(e.target.value)}/>
+                  <input type="text" id="company" value={company} onChange={e => setCompany(e.target.value)}/>
                 </label>
                 <label htmlFor="from">From:
-                  <input type="date" value={experience.fromDate} onChange={e => setFromDate(e.target.value)} />
+                  <input type="date" id='from' value={fromDate} onChange={e => setFromDate(e.target.value)} />
                 </label>
                 <label htmlFor="to">To: 
-                  <input type="date" id='to' value={experience.toDate} onChange={e => setToDate(e.target.value)} />
+                  <input type="date" id='to' value={toDate} onChange={e => setToDate(e.target.value)} />
                 </label>
                 <button type='button' onClick={() => {setExperience([...experience, {id: nextId++, position: position, company:company, fromDate: fromDate, toDate: toDate }]), 
                 experienceFormReset()}}>
@@ -136,7 +139,12 @@ function App() {
             {experience.map(exp => (
               <li key={exp.id}>{exp.position}{' '}<i>{exp.company}</i>{' '}{exp.fromDate}-{exp.toDate} <button onClick={() => {
                 setExperience(experience.filter(a => a.id !== exp.id))
-              }}>Delete</button><button>Edit</button></li>
+              }}>Delete</button><button onClick={() => {
+                document.getElementById("position").value = exp.position; 
+                document.getElementById("company").value = exp.company;
+                document.getElementById("from").value = exp.fromDate;
+                document.getElementById("to").value = exp.toDate;
+              }}>Edit</button></li>
             ))}
           </ul>
         </div>
