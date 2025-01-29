@@ -4,11 +4,14 @@ function Resume(props) {
     let name = props.name;
     let email = props.email;
     let phone = props.phone;
+
     let education = props.education;
     let educationDelete = props.onDelete;
+    let educationEdit = props.onEditEducation;
+
     let experience = props.experience;
     let experienceDelete = props.onExperienceDelete;
-
+    let experienceEdit = props.onEditExperience;
     
     
 
@@ -22,7 +25,7 @@ function Resume(props) {
           <ul>
           {education.map(edu => (
               <li key={edu.id}>{edu.school}{' '}<i>{edu.degree}</i>{' '}{edu.date} <button onClick={() => educationDelete(edu.id)}>Delete</button>
-              <button>Edit</button></li>
+              <button onClick={() => educationEdit(edu.id, edu.school, edu.degree, edu.date)}>Edit</button></li>
             ))}
           </ul>
           <h2>Experience</h2>
@@ -30,7 +33,7 @@ function Resume(props) {
           <ul>
             {experience.map(exp => (
                 <li key={exp.id}>{exp.position}{' '}{exp.company}{' '}{exp.fromDate}{' '}{'-'}{exp.toDate} <button onClick={() => experienceDelete(exp.id)}>Delete</button>
-                <button>Edit</button></li>
+                <button onClick={() => experienceEdit(exp.id, exp.position, exp.company, exp.fromDate, exp.toDate)}>Edit</button></li>
             ))}
           </ul>
           

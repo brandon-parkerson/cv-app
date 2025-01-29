@@ -55,6 +55,23 @@ function App() {
     setExperience(experience.filter((exp) => exp.id !== id));
   }
   
+  function handleEditEducation(id, school, degree, date) {
+    
+    document.getElementById("school").value = school;
+    document.getElementById("degree").value = degree;
+    document.getElementById("date").value = date;
+    setEducation(education.filter((edu)=> edu.id !== id));
+    
+  } 
+
+  function handleEditExperience(id, position, company, from, to) {
+    document.getElementById("position").value = position;
+    document.getElementById("company").value = company;
+    document.getElementById("from").value = from;
+    document.getElementById("to").value = to;
+
+    setExperience(experience.filter((exp) => exp.id !== id));
+  }
 
   return (
     <>
@@ -70,7 +87,7 @@ function App() {
           }}>Add</button>
         </div>
         <Resume name={name} email={email} phone={phone} school={school} education={education} onDelete={handleDelete}
-         experience={experience} onExperienceDelete={handleExperienceDelete}/>
+         experience={experience} onExperienceDelete={handleExperienceDelete} onEditEducation={handleEditEducation} onEditExperience={handleEditExperience}/>
         
       </div>
     </>
