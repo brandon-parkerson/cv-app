@@ -26,6 +26,10 @@ function App() {
     date: '2024-05-05'
   }])
 
+  function handleFormReset() {
+    document.getElementById("EducationForm").reset();
+  }
+
   function handleDelete(id) {
     setEducation(education.filter((edu) => edu.id !== id));
   }
@@ -38,7 +42,7 @@ function App() {
           <GeneralInfo onName={setName} onEmail={setEmail} onPhone={setPhone}/>
           <EducationForm onSchool={setSchool} onDegree={setDegree} onDate={setDate} />
           <button type='button' onClick={() => 
-                  {setEducation([...education, {id: nextId++, school: school, degree: degree, date: date }])}}>Add</button>
+                  {setEducation([...education, {id: nextId++, school: school, degree: degree, date: date }]), handleFormReset()}}>Add</button>
           <ExperienceForm />
         </div>
         <Resume name={name} email={email} phone={phone} school={school} education={education} onDelete={handleDelete} />
