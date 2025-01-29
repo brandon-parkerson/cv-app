@@ -26,12 +26,33 @@ function App() {
     date: '2024-05-05'
   }])
 
+  // Experience info 
+  const [position, setPosition] = useState('');
+  const [company, setCompany] = useState('');
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
+  const [experience, setExperience] = useState([{
+    id: nextId++, 
+    position: 'Full Stack Engineer',
+    company: 'Google',
+    fromDate: '1998-08-17',
+    toDate: '2016-05-05'
+  }]);
+
   function handleFormReset() {
     document.getElementById("EducationForm").reset();
   }
 
   function handleDelete(id) {
     setEducation(education.filter((edu) => edu.id !== id));
+  }
+
+  function handleExperienceReset() {
+    document.getElementById("ExperienceForm").reset()
+  }
+
+  function handleExperienceDelete(id) {
+    setExperience(experience.filter((exp) => exp.id !== id));
   }
   
 
@@ -43,9 +64,13 @@ function App() {
           <EducationForm onSchool={setSchool} onDegree={setDegree} onDate={setDate} />
           <button type='button' onClick={() => 
                   {setEducation([...education, {id: nextId++, school: school, degree: degree, date: date }]), handleFormReset()}}>Add</button>
-          <ExperienceForm />
+          <ExperienceForm onPosition={setPosition} onCompany={setCompany} onFrom={setFromDate} onTo={setToDate}/>
+          <button type='button' onClick={() => {
+            setExperience([...experience, {id: nextId++, position: position, company: company, fromDate: fromDate, toDate: toDate}]), handleExperienceReset()
+          }}>Add</button>
         </div>
-        <Resume name={name} email={email} phone={phone} school={school} education={education} onDelete={handleDelete} />
+        <Resume name={name} email={email} phone={phone} school={school} education={education} onDelete={handleDelete}
+         experience={experience} onExperienceDelete={handleExperienceDelete}/>
         
       </div>
     </>

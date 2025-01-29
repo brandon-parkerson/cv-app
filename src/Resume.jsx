@@ -6,6 +6,8 @@ function Resume(props) {
     let phone = props.phone;
     let education = props.education;
     let educationDelete = props.onDelete;
+    let experience = props.experience;
+    let experienceDelete = props.onExperienceDelete;
 
     
     
@@ -24,7 +26,13 @@ function Resume(props) {
             ))}
           </ul>
           <h2>Experience</h2>
-          
+          <hr />
+          <ul>
+            {experience.map(exp => (
+                <li key={exp.id}>{exp.position}{' '}{exp.company}{' '}{exp.fromDate}{' '}{'-'}{exp.toDate} <button onClick={() => experienceDelete(exp.id)}>Delete</button>
+                <button>Edit</button></li>
+            ))}
+          </ul>
           
 
         </div>

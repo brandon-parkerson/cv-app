@@ -1,14 +1,8 @@
 import { useState } from "react";
 
 
-
-
-
 function EducationForm({onSchool, onDegree, onDate}) {
 
-   
-    
-    
     function handleSchool(e) {
         onSchool(e.target.value);
     }

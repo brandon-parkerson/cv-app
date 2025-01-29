@@ -1,11 +1,22 @@
 import { useState } from "react";
 
 
-function ExperienceForm() {
-    const [position, setPosition] = useState('');
-    const [company, setCompany] = useState('');
-    const [fromDate, setFromDate] = useState('');
-    const [toDate, setToDate] = useState('');
+function ExperienceForm({onPosition, onCompany, onFrom, onTo}) {
+    function handlePosition(e) {
+        onPosition(e.target.value)
+    }
+
+    function handleCompany(e) {
+        onCompany(e.target.value)
+    }
+
+    function handleFrom(e) {
+        onFrom(e.target.value)
+    }
+
+    function handleTo(e) {
+        onTo(e.target.value)
+    }
 
     return (
         <>
@@ -13,19 +24,18 @@ function ExperienceForm() {
             <form action="" id='ExperienceForm'>
             <h2>Experience</h2>
             <label htmlFor="position">Position:
-                <input type="text" id="position" />
+                <input type="text" id="position" onChange={handlePosition}/>
             </label>
             <label htmlFor="company">Company: 
-                <input type="text" id="company" />
+                <input type="text" id="company" onChange={handleCompany}/>
             </label>
             <label htmlFor="from">From:
-                <input type="date" id='from' />
+                <input type="date" id='from' onChange={handleFrom}/>
             </label>
             <label htmlFor="to">To: 
-                <input type="date" id='to'  />
+                <input type="date" id='to'  onChange={handleTo}/>
             </label>
-            <button type='button' >
-                Add</button>
+            
             </form>
         </>
     )
