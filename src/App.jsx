@@ -26,6 +26,11 @@ function App() {
     date: '2024-05-05'
   }])
 
+  function handleDelete(id) {
+    setEducation(education.filter((edu) => edu.id !== id));
+  }
+  
+
   return (
     <>
       <div className="app-container">
@@ -36,7 +41,8 @@ function App() {
                   {setEducation([...education, {id: nextId++, school: school, degree: degree, date: date }])}}>Add</button>
           <ExperienceForm />
         </div>
-        <Resume name={name} email={email} phone={phone} school={school} education={education} />
+        <Resume name={name} email={email} phone={phone} school={school} education={education} onDelete={handleDelete} />
+        
       </div>
     </>
   );

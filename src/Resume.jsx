@@ -5,6 +5,10 @@ function Resume(props) {
     let email = props.email;
     let phone = props.phone;
     let education = props.education;
+    let educationDelete = props.onDelete;
+
+    
+    
 
     return (
         <div className='resume'>
@@ -15,7 +19,7 @@ function Resume(props) {
           <hr></hr>
           <ul>
           {education.map(edu => (
-              <li key={edu.id}>{edu.school}{' '}<i>{edu.degree}</i>{' '}{edu.date} <button>Delete</button>
+              <li key={edu.id}>{edu.school}{' '}<i>{edu.degree}</i>{' '}{edu.date} <button onClick={() => educationDelete(edu.id)}>Delete</button>
               <button>Edit</button></li>
             ))}
           </ul>
