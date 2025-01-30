@@ -76,3 +76,7 @@ li {
   line-height: 2.5em;
 }
 
+#duties {
+  display: flex;
+}
+

@@ -6,6 +6,8 @@ import { GeneralInfo } from './Info';
 import { ExperienceForm } from './Experience';
 import { Resume } from './Resume';
 
+// TODO: Duties input and resume design
+
 function App() {
   let nextId = 0;
   
@@ -31,12 +33,14 @@ function App() {
   const [company, setCompany] = useState('');
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
+  const [responsibilities, setResponsibilities] = useState('');
   const [experience, setExperience] = useState([{
     id: nextId++, 
     position: 'Full Stack Engineer',
     company: 'Google',
     fromDate: '1998-08-17',
-    toDate: '2016-05-05'
+    toDate: '2016-05-05',
+    responsibilities: 'Make cool stuff'
   }]);
 
   function handleFormReset() {
@@ -64,14 +68,17 @@ function App() {
     
   } 
 
-  function handleEditExperience(id, position, company, from, to) {
+  function handleEditExperience(id, position, company, from, to, responsibilities) {
     document.getElementById("position").value = position;
     document.getElementById("company").value = company;
     document.getElementById("from").value = from;
     document.getElementById("to").value = to;
+    document.getElementById("duties").value = responsibilities;
 
     setExperience(experience.filter((exp) => exp.id !== id));
   }
+
+  
 
   return (
     <>
@@ -81,13 +88,14 @@ function App() {
           <EducationForm onSchool={setSchool} onDegree={setDegree} onDate={setDate} />
           <button type='button' onClick={() => 
                   {setEducation([...education, {id: nextId++, school: school, degree: degree, date: date }]), handleFormReset()}}>Add</button>
-          <ExperienceForm onPosition={setPosition} onCompany={setCompany} onFrom={setFromDate} onTo={setToDate}/>
+          <ExperienceForm onPosition={setPosition} onCompany={setCompany} onFrom={setFromDate} onTo={setToDate} onDuties={setResponsibilities}/>
           <button type='button' onClick={() => {
-            setExperience([...experience, {id: nextId++, position: position, company: company, fromDate: fromDate, toDate: toDate}]), handleExperienceReset()
+            setExperience([...experience, {id: nextId++, position: position, company: company, fromDate: fromDate, toDate: toDate, responsibilities: responsibilities}]), handleExperienceReset()
           }}>Add</button>
         </div>
         <Resume name={name} email={email} phone={phone} school={school} education={education} onDelete={handleDelete}
-         experience={experience} onExperienceDelete={handleExperienceDelete} onEditEducation={handleEditEducation} onEditExperience={handleEditExperience}/>
+         experience={experience} onExperienceDelete={handleExperienceDelete} onEditEducation={handleEditEducation} 
+         onEditExperience={handleEditExperience} />
         
       </div>
     </>

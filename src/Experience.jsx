@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-function ExperienceForm({onPosition, onCompany, onFrom, onTo}) {
+function ExperienceForm({onPosition, onCompany, onFrom, onTo, onDuties}) {
     function handlePosition(e) {
         onPosition(e.target.value)
     }
@@ -18,6 +18,10 @@ function ExperienceForm({onPosition, onCompany, onFrom, onTo}) {
         onTo(e.target.value)
     }
 
+    function handleDuties(e) {
+        onDuties(e.target.value)
+    }
+
     return (
         <>
             
@@ -26,8 +30,12 @@ function ExperienceForm({onPosition, onCompany, onFrom, onTo}) {
             <label htmlFor="position">Position:
                 <input type="text" id="position" onChange={handlePosition}/>
             </label>
+            
             <label htmlFor="company">Company: 
                 <input type="text" id="company" onChange={handleCompany}/>
+            </label>
+            <label htmlFor="duties"> Responsibilities: 
+                <textarea name="duties" id="duties" onChange={handleDuties}></textarea>
             </label>
             <label htmlFor="from">From:
                 <input type="date" id='from' onChange={handleFrom}/>

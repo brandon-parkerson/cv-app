@@ -32,8 +32,8 @@ function Resume(props) {
           <hr />
           <ul>
             {experience.map(exp => (
-                <li key={exp.id}>{exp.position}{' '}{exp.company}{' '}{exp.fromDate}{' '}{'-'}{exp.toDate} <button onClick={() => experienceDelete(exp.id)}>Delete</button>
-                <button onClick={() => experienceEdit(exp.id, exp.position, exp.company, exp.fromDate, exp.toDate)}>Edit</button></li>
+                <li key={exp.id}>{exp.position}{' '}<i>{exp.company}</i>{' '}{exp.fromDate}{' '}{'-'}{exp.toDate} {' '} {exp.responsibilities} <button onClick={() => experienceDelete(exp.id)}>Delete</button>
+                <button onClick={() => experienceEdit(exp.id, exp.position, exp.company, exp.fromDate, exp.toDate, exp.responsibilities)}>Edit</button></li>
             ))}
           </ul>
           
