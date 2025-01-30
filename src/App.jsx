@@ -1,15 +1,17 @@
 import { useState } from 'react'
+import { Button } from '@mui/material';
 
 import './App.css'
 import { EducationForm } from './Education';
 import { GeneralInfo } from './Info';
 import { ExperienceForm } from './Experience';
 import { Resume } from './Resume';
+import { useRef } from 'react';
 
 // TODO: Duties input and resume design
 
 function App() {
-  let nextId = 0;
+  let nextId = useRef(0);
   
   // General info
   const [name, setName] = useState('');
@@ -22,7 +24,7 @@ function App() {
   const [date, setDate] = useState('');
   const [education, setEducation] = useState([{
     
-    id: nextId++,
+    id: nextId.current++,
     school: 'Harvard',
     degree: 'Masters Computer Science',
     date: '2024-05-05'
@@ -35,7 +37,7 @@ function App() {
   const [toDate, setToDate] = useState('');
   const [responsibilities, setResponsibilities] = useState('');
   const [experience, setExperience] = useState([{
-    id: nextId++, 
+    id: nextId.current++, 
     position: 'Full Stack Engineer',
     company: 'Google',
     fromDate: '1998-08-17',
@@ -48,7 +50,7 @@ function App() {
   }
 
   function handleDelete(id) {
-    setEducation(education.filter((edu) => edu.id !== id));
+    setEducation((prev) => prev.filter((edu) => edu.id !== id));
   }
 
   function handleExperienceReset() {
@@ -56,7 +58,7 @@ function App() {
   }
 
   function handleExperienceDelete(id) {
-    setExperience(experience.filter((exp) => exp.id !== id));
+    setExperience((prev) => prev.filter((exp) => exp.id !== id));
   }
   
   function handleEditEducation(id, school, degree, date) {
@@ -86,12 +88,12 @@ function App() {
         <div className='forms-container'>
           <GeneralInfo onName={setName} onEmail={setEmail} onPhone={setPhone}/>
           <EducationForm onSchool={setSchool} onDegree={setDegree} onDate={setDate} />
-          <button type='button' onClick={() => 
-                  {setEducation([...education, {id: nextId++, school: school, degree: degree, date: date }]), handleFormReset()}}>Add</button>
+          <Button className="add-button" type='button' variant='contained' onClick={() => 
+                  {setEducation([...education, {id: nextId.current++, school: school, degree: degree, date: date }]), handleFormReset()}}>Add</Button>
           <ExperienceForm onPosition={setPosition} onCompany={setCompany} onFrom={setFromDate} onTo={setToDate} onDuties={setResponsibilities}/>
-          <button type='button' onClick={() => {
-            setExperience([...experience, {id: nextId++, position: position, company: company, fromDate: fromDate, toDate: toDate, responsibilities: responsibilities}]), handleExperienceReset()
-          }}>Add</button>
+          <Button type='button' variant='contained' onClick={() => {
+            setExperience([...experience, {id: nextId.current++, position: position, company: company, fromDate: fromDate, toDate: toDate, responsibilities: responsibilities}]), handleExperienceReset()
+          }}>Add</Button>
         </div>
         <Resume name={name} email={email} phone={phone} school={school} education={education} onDelete={handleDelete}
          experience={experience} onExperienceDelete={handleExperienceDelete} onEditEducation={handleEditEducation} 

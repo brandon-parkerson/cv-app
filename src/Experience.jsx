@@ -1,5 +1,9 @@
 import { useState } from "react";
-
+import { Input } from "@mui/material";
+import { Textarea } from "@mui/joy";
+import { DatePicker } from "@mui/x-date-pickers";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 function ExperienceForm({onPosition, onCompany, onFrom, onTo, onDuties}) {
     function handlePosition(e) {
@@ -10,12 +14,12 @@ function ExperienceForm({onPosition, onCompany, onFrom, onTo, onDuties}) {
         onCompany(e.target.value)
     }
 
-    function handleFrom(e) {
-        onFrom(e.target.value)
+    function handleFrom(value) {
+        onFrom(value ? value.format('YYYY-MM-DD') : '')
     }
 
-    function handleTo(e) {
-        onTo(e.target.value)
+    function handleTo(value) {
+        onTo(value ? value.format('YYYY-MM-DD') : '')
     }
 
     function handleDuties(e) {
@@ -27,22 +31,28 @@ function ExperienceForm({onPosition, onCompany, onFrom, onTo, onDuties}) {
             
             <form action="" id='ExperienceForm'>
             <h2>Experience</h2>
-            <label htmlFor="position">Position:
-                <input type="text" id="position" onChange={handlePosition}/>
+            <label htmlFor="position">
+                <Input type="text" id="position" onChange={handlePosition} placeholder="Position"/>
             </label>
             
-            <label htmlFor="company">Company: 
-                <input type="text" id="company" onChange={handleCompany}/>
+            <label htmlFor="company">
+                <Input type="text" id="company" onChange={handleCompany} placeholder="Company"/>
             </label>
-            <label htmlFor="duties"> Responsibilities: 
-                <textarea name="duties" id="duties" onChange={handleDuties}></textarea>
+            <label htmlFor="duties"> 
+                <Textarea name="duties" id="duties" onChange={handleDuties} placeholder="Responsibilities..." minRows={2}></Textarea>
             </label>
-            <label htmlFor="from">From:
-                <input type="date" id='from' onChange={handleFrom}/>
-            </label>
-            <label htmlFor="to">To: 
-                <input type="date" id='to'  onChange={handleTo}/>
-            </label>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker type="date" id='from' onChange={handleFrom} label="From"/>
+            </LocalizationProvider>
+                
+            
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker type="date" id='to'  onChange={handleTo} label="To"/>
+            </LocalizationProvider>
+            
+            
+                
+            
             
             </form>
         </>
