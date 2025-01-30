@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { Button } from '@mui/material';
 
 import './App.css'
-import { EducationForm } from './Education';
-import { GeneralInfo } from './Info';
-import { ExperienceForm } from './Experience';
-import { Resume } from './Resume';
+import { EducationForm } from './components/Education'
+import { GeneralInfo } from './components/Info';
+import { ExperienceForm } from './components/Experience';
+import { Resume } from './components/Resume';
 import { useRef } from 'react';
 
 // TODO: Duties input and resume design
