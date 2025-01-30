@@ -88,10 +88,10 @@ function App() {
         <div className='forms-container'>
           <GeneralInfo onName={setName} onEmail={setEmail} onPhone={setPhone}/>
           <EducationForm onSchool={setSchool} onDegree={setDegree} onDate={setDate} />
-          <Button className="add-button" type='button' variant='contained' onClick={() => 
+          <Button id='add-button' type='button' variant='contained' onClick={() => 
                   {setEducation([...education, {id: nextId.current++, school: school, degree: degree, date: date }]), handleFormReset()}}>Add</Button>
           <ExperienceForm onPosition={setPosition} onCompany={setCompany} onFrom={setFromDate} onTo={setToDate} onDuties={setResponsibilities}/>
-          <Button type='button' variant='contained' onClick={() => {
+          <Button id='add-button-two' type='button' variant='contained' onClick={() => {
             setExperience([...experience, {id: nextId.current++, position: position, company: company, fromDate: fromDate, toDate: toDate, responsibilities: responsibilities}]), handleExperienceReset()
           }}>Add</Button>
         </div>

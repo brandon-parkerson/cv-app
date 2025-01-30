@@ -42,12 +42,12 @@ function ExperienceForm({onPosition, onCompany, onFrom, onTo, onDuties}) {
                 <Textarea name="duties" id="duties" onChange={handleDuties} placeholder="Responsibilities..." minRows={2}></Textarea>
             </label>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker type="date" id='from' onChange={handleFrom} label="From"/>
+                <DatePicker type="date" id='from' onChange={handleFrom} label="From" slotProps={{ textField: { size: 'small' } }}/>
             </LocalizationProvider>
                 
             
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker type="date" id='to'  onChange={handleTo} label="To"/>
+                <DatePicker type="date" id='to'  onChange={handleTo} label="To" slotProps={{ textField: { size: 'small' } }}/>
             </LocalizationProvider>
             
             

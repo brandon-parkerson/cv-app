@@ -31,7 +31,7 @@ return (
         <Input type="text" id='degree'  onChange={handleDegree} variant="soft" placeholder="Degree"/>
         
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker id="date" label="date" onChange={handleDate}  slotProps={{ textField: { size: 'small' } }}/>
+            <DatePicker id="date" label="Date" onChange={handleDate}  slotProps={{ textField: { size: 'small' } }}/>
         </LocalizationProvider>
         
         
